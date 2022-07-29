@@ -14,9 +14,12 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
-mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true }, () => {
-  console.log("Connected to DB");
-});
+mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true }, (err) => {
+  if(err){
+    console.log(err)
+  } else{
+    console.log("Connected to DB");
+}});
 
 // GET METHOD
 app.get("/", async (req, res) => {
