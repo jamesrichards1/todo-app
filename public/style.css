@@ -1,0 +1,149 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #8e9ecc;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.todo-container {
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 20px;
+    width: 800px;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.todo {
+    width: 600px;
+}
+
+h2 {
+    padding: 10px;
+    font-size: 2rem;
+}
+
+input {
+    margin-bottom: 8px;
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 1.5rem;
+}
+
+textarea {
+    display:block;
+    padding: 2px;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+}
+
+.todo-header button {
+    display:block;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin: 5px;
+    padding: 5px;
+    background-color: rgb(51, 126, 212);
+    font-size: 1rem;
+}
+
+ul {
+    list-style: none;
+}
+
+.todo-list-item {
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: row;
+}
+
+.todo-list-item-content {
+    font-size: .8rem;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.todo-list-item form {
+    width: 100%;
+    display: flex;
+}
+
+.todo-list-item input {
+    flex-grow: 2;
+    margin-right: 20px;
+    border: none;
+    border-radius: 5px;
+}
+
+
+.todo-list-item .confirm, .cancel {
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px;
+    background-color: rgb(51, 212, 100);
+    max-height: 30px;
+    display: block;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    width: 100%;
+}
+
+.cancel {
+    background-color: rgb(223, 43, 43);
+    text-align: center;
+    margin-right: 4px;
+}
+
+.confirm {
+    background-color: rgb(51, 212, 100);
+    margin-left: 4px;
+}
+
+.todo-list-item div {
+    flex-grow: 2;
+}
+
+.todo-list-item .edit {
+    color: rgb(207, 220, 235);
+    margin-right: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-left: auto;
+}
+
+.todo-list-item .remove {
+    color: rgb(207, 220, 235);
+    margin-right: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.edit-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.con-rem-container {
+    display: flex;
+}

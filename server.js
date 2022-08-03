@@ -6,6 +6,7 @@ const express = require("express");
 const app = express();
 const PORT = 8500;
 const mongoose = require("mongoose");
+const { restart } = require("nodemon");
 const TodoTask = require("./models/todotask");
 require("dotenv").config();
 
@@ -14,12 +15,17 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
-mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true }, (err) => {
-  if(err){
-    console.log(err)
-  } else{
-    console.log("Connected to DB");
-}});
+mongoose.connect(
+  process.env.DB_CONNECTION,
+  { useNewUrlParser: true },
+  (err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("Connected to DB");
+    }
+  }
+);
 
 // GET METHOD
 app.get("/", async (req, res) => {
@@ -47,5 +53,44 @@ app.post("/", async (req, res) => {
     res.redirect("/");
   }
 });
+
+//EDIT or UPDATE METHOD
+
+app
+  .route("/edit/:id")
+  .get((req, res) => {
+    const id = req.params.id;
+    TodoTask.find({}, (err, tasks) => {
+      res.render("edit.ejs", {
+        todoTasks: tasks,
+        idTask: id,
+      });
+    });
+  })
+  .post((req, res) => {
+    const id = req.params.id;
+    TodoTask.findByIdAndUpdate(
+      id,
+      {
+        title: req.body.title,
+        content: req.body.content,
+      },
+      (err) => {
+        if (err) return res.status(500).send(err);
+        res.redirect("/");
+      }
+    );
+  });
+
+//delete
+app
+  .route("/remove/:id")
+  .get((req, res) => {
+    const id = req.params.id;
+    TodoTask.findByIdAndRemove(id, (err) => {
+      if (err) return res.status(500).send(err);
+      res.redirect("/");
+    });
+  });
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
